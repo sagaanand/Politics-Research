@@ -17,3 +17,4 @@ export const SlideCounter: React.FC<SlideCounterProps> = ({ currentIndex, totalS
     </div>
   );
 };
+

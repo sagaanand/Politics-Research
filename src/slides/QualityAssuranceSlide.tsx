@@ -1,103 +1,108 @@
 import React from 'react';
-import { ShieldCheck, ArrowRight, CheckCircle2, AlertTriangle, FileSpreadsheet } from 'lucide-react';
+import { ShieldCheck, CheckCheck, FileText, AlertTriangle } from 'lucide-react';
 
 export const QualityAssuranceSlide: React.FC = () => {
   const chainSteps = [
-    { role: 'Data Collection Exec 1', action: 'Primary Extraction & Input', icon: '01' },
-    { role: 'Data Collection Exec 2', action: 'Independent Blind Cross-Check', icon: '02' },
-    { role: 'Senior Researcher', action: 'Methodology & Anomaly Review', icon: '03' },
-    { role: 'Audit Register', action: 'Discrepancy & Variance Logging', icon: '04' },
-    { role: 'Ananda Krishnan', action: 'Final Analytical Review & Sign-Off', icon: '05' }
+    { num: '01', title: 'Data Collection', role: 'Primary Extraction', note: 'Form 20 digitization' },
+    { num: '02', title: 'Cross-Check', role: 'Independent Audit', note: 'Double-entry validation' },
+    { num: '03', title: 'Senior Review', role: 'Methodology Check', note: 'Anomaly investigation' },
+    { num: '04', title: "Anand's Final Review", role: 'Lead Sign-Off', note: 'Analytical synthesis' }
   ];
 
-  const controls = [
-    'Cross-checking important candidate and booth vote totals against gazetted Form 20s',
-    'Checking internal arithmetic consistency (booth totals summing accurately to round and AC totals)',
-    'Strictly distinguishing between total votes polled, valid votes, and rejected/tendered votes',
-    'Recording explicit source citations, definitions, and denominators for every percentage metric',
-    'Reviewing polling-station identifiers, building descriptions, and historical mapping continuity',
-    'Maintaining a formal multi-field verification status log across all dataset records',
-    'Transparently documenting disagreements or variances observed between differing secondary sources',
-    'Strictly separating confirmed, verified data points from provisional or unresolved data'
+  const principles = [
+    {
+      title: 'Source-Backed',
+      desc: 'Every recorded figure is tethered to an authoritative gazette, Form 20, or verified archival return.',
+      icon: FileText
+    },
+    {
+      title: 'Cross-Checked',
+      desc: 'Segregated team members independently verify arithmetic consistency and booth margin calculations.',
+      icon: CheckCheck
+    },
+    {
+      title: 'Transparent Gaps',
+      desc: 'Unresolved variances, missing documents, or damaged records are logged openly rather than guessed.',
+      icon: ShieldCheck
+    }
   ];
 
   return (
-    <div className="flex-1 w-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 bg-white">
+    <div className="flex-1 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 bg-white">
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold tracking-widest uppercase text-[#0066CC]">
-            Data Integrity & Controls
+            Data Quality & Integrity
           </span>
           <span className="text-[#86868B] text-xs">/ Section 09</span>
         </div>
-        <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#1D1D1F]">
-          Verification Before Interpretation
+        <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F]">
+          Verified Before It Is Reported
         </h2>
-        <p className="mt-1 text-xs sm:text-sm text-[#6E6E73]">
-          A five-stage review chain preventing compounding transcription and analytical errors
+        <p className="mt-2 text-sm sm:text-base text-[#6E6E73]">
+          A four-tier verification chain eliminating compounding transcription errors before client presentation.
         </p>
       </div>
 
-      {/* Main Section */}
-      <div className="my-auto py-3 space-y-4">
-        {/* Quality-Control Chain Diagram */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-[#FBFBFD] border border-[#E5E5EA]">
-          <div className="flex items-center justify-between pb-3 border-b border-[#E5E5EA]">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#1D1D1F]">
-              Quality-Control Review Chain
+      {/* Dominant Visual Review Chain (65% of slide) */}
+      <div className="my-auto py-4 space-y-5">
+        {/* Review Chain Flow */}
+        <div className="p-6 sm:p-7 rounded-3xl bg-[#FBFBFD] border border-[#E5E5EA] shadow-sm">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E5E5EA] mb-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1D1D1F]">
+              Four-Tier Review Chain
             </span>
-            <span className="text-[10px] font-mono text-[#0066CC] font-semibold">
-              Multi-Tier Safeguards
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-[#0066CC] border border-blue-200 font-semibold">
+              Sequential Gates
             </span>
           </div>
 
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-5 gap-2.5 items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 items-center">
             {chainSteps.map((step, idx) => (
               <React.Fragment key={idx}>
-                <div className="p-3 rounded-xl bg-white border border-[#E5E5EA] shadow-sm flex flex-col justify-between h-full">
+                <div className="p-4 rounded-2xl bg-white border border-[#E5E5EA] shadow-sm flex flex-col justify-between h-full group hover:border-[#0066CC]/50 transition-all">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold text-[#0066CC] bg-blue-50 px-1.5 py-0.5 rounded">
-                      Step {step.icon}
+                    <span className="w-7 h-7 rounded-lg bg-blue-50 text-[#0066CC] font-mono font-bold text-xs flex items-center justify-center">
+                      {step.num}
                     </span>
-                    {idx === 4 && <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />}
+                    <span className="text-[10px] font-mono text-[#86868B]">Gate {idx + 1}</span>
                   </div>
-                  <div className="mt-2">
-                    <div className="text-xs font-bold text-[#1D1D1F] leading-tight">{step.role}</div>
-                    <div className="text-[10px] text-[#6E6E73] mt-1">{step.action}</div>
+                  <div className="mt-3">
+                    <h4 className="text-xs sm:text-sm font-bold text-[#1D1D1F]">{step.title}</h4>
+                    <div className="text-[11px] font-semibold text-[#0066CC] mt-0.5">{step.role}</div>
+                    <div className="text-[10px] text-[#6E6E73] mt-1">{step.note}</div>
                   </div>
                 </div>
-                {idx < chainSteps.length - 1 && (
-                  <div className="hidden sm:flex justify-center -mx-2 text-[#C7C7CC] pointer-events-none">
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                )}
               </React.Fragment>
             ))}
           </div>
         </div>
 
-        {/* 8 Controls Checklist */}
-        <div className="p-4 rounded-xl bg-[#FBFBFD] border border-[#E5E5EA]">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-[#6E6E73] mb-3 flex items-center gap-1.5">
-            <FileSpreadsheet className="w-4 h-4 text-[#0066CC]" /> Core Verification & Audit Protocols
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-[#1D1D1F]">
-            {controls.map((ctrl, cIdx) => (
-              <div key={cIdx} className="flex items-start gap-2 p-1.5 rounded-lg bg-white border border-[#E5E5EA]/70">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#0066CC] shrink-0 mt-0.5" />
-                <span className="text-[11px] leading-relaxed text-[#1D1D1F]">{ctrl}</span>
+        {/* Three Core Principles Visual Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {principles.map((pr, idx) => {
+            const Icon = pr.icon;
+            return (
+              <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-white border border-[#E5E5EA] shadow-sm flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0066CC] flex items-center justify-center shrink-0">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#1D1D1F]">{pr.title}</h4>
+                  <p className="mt-1 text-[11px] text-[#6E6E73] leading-relaxed">{pr.desc}</p>
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Audit Standard Disclaimer */}
-      <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200 flex items-start gap-2 text-xs text-amber-900">
+      {/* Audit Disclaimer Banner */}
+      <div className="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200 flex items-start gap-2.5 text-xs text-amber-900">
         <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
         <p>
-          <strong>Audit Principle:</strong> The project does not claim independent verification of every historic record until extraction and reconciliation against authoritative gazettes is formally completed and signed off in the Source Register.
+          <strong>Quality Protocol Notice:</strong> Independent verification is performed during active project execution. No claim is made that historical verification has already concluded prior to engagement kickoff.
         </p>
       </div>
 

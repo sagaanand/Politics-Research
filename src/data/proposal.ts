@@ -1,14 +1,13 @@
 export interface ProjectCommercials {
-  researcherMonthlyCost: number;
-  dataExecutiveOneMonthlyCost: number;
-  dataExecutiveTwoMonthlyCost: number;
-  projectLeadMonthlyCost: number;
+  projectLeadCost: number;
+  employeeOneCost: number;
+  employeeTwoCost: number;
+  employeeThreeCost: number;
   researchExpenses: number;
   markupPercentage: number;
   advancePercentage: number;
   interimPercentage: number;
   finalPercentage: number;
-  preliminaryFee: number;
 }
 
 export interface InternalCostItem {
@@ -37,19 +36,36 @@ export interface SlideMetadata {
 }
 
 export const projectCommercials: ProjectCommercials = {
-  researcherMonthlyCost: 20000,
-  dataExecutiveOneMonthlyCost: 20000,
-  dataExecutiveTwoMonthlyCost: 20000,
-  projectLeadMonthlyCost: 80000,
+  projectLeadCost: 50000,
+  employeeOneCost: 15000,
+  employeeTwoCost: 15000,
+  employeeThreeCost: 15000,
   researchExpenses: 10000,
   markupPercentage: 15,
   advancePercentage: 40,
   interimPercentage: 30,
-  finalPercentage: 30,
-  preliminaryFee: 172500
+  finalPercentage: 30
 };
 
-// Validate payment percentages equal 100%
+export const totalCost =
+  projectCommercials.projectLeadCost +
+  projectCommercials.employeeOneCost +
+  projectCommercials.employeeTwoCost +
+  projectCommercials.employeeThreeCost +
+  projectCommercials.researchExpenses;
+
+export const markupAmount =
+  (totalCost * projectCommercials.markupPercentage) / 100;
+
+export const preliminaryProjectFee = totalCost + markupAmount;
+
+export const paymentMilestones = {
+  advance: (preliminaryProjectFee * projectCommercials.advancePercentage) / 100,
+  interim: (preliminaryProjectFee * projectCommercials.interimPercentage) / 100,
+  final: (preliminaryProjectFee * projectCommercials.finalPercentage) / 100
+};
+
+// Validate that payment percentages total 100%
 const totalPaymentPercentage =
   projectCommercials.advancePercentage +
   projectCommercials.interimPercentage +
@@ -61,8 +77,8 @@ if (totalPaymentPercentage !== 100) {
   );
 }
 
-// Calculate milestone payment schedule dynamically based on the preliminary fee
-export const getMilestones = (fee: number = projectCommercials.preliminaryFee): MilestonePayment[] => [
+// Calculate milestone payment schedule dynamically based on the fee
+export const getMilestones = (fee: number = preliminaryProjectFee): MilestonePayment[] => [
   {
     percentage: projectCommercials.advancePercentage,
     title: 'Project Kickoff & Source Audit',
@@ -90,36 +106,36 @@ export const getMilestones = (fee: number = projectCommercials.preliminaryFee): 
 export const getInternalCostBreakdown = () => {
   const items: InternalCostItem[] = [
     {
-      component: 'Senior Researcher',
-      role: 'Methodology supervision, quality control, discrepancy audits',
-      ratePerMonth: projectCommercials.researcherMonthlyCost,
+      component: 'Anand — Project Lead & Primary Analyst',
+      role: 'Overall analytical architecture, cross-year comparison, client review',
+      ratePerMonth: projectCommercials.projectLeadCost,
       durationMonths: 1,
-      total: projectCommercials.researcherMonthlyCost,
-      notes: 'Supervises secondary source collection and cross-year consistency'
+      total: projectCommercials.projectLeadCost,
+      notes: 'Overall analytical framework, synthesis, presentation, and client advisory'
     },
     {
-      component: 'Data Collection Executive 1',
+      component: 'Employee 1 — Data Executive 1',
       role: 'Primary document collection, structured extraction, digitization',
-      ratePerMonth: projectCommercials.dataExecutiveOneMonthlyCost,
+      ratePerMonth: projectCommercials.employeeOneCost,
       durationMonths: 1,
-      total: projectCommercials.dataExecutiveOneMonthlyCost,
+      total: projectCommercials.employeeOneCost,
       notes: 'Primary data entry and physical/digital archive extraction'
     },
     {
-      component: 'Data Collection Executive 2',
+      component: 'Employee 2 — Data Executive 2',
       role: 'Independent cross-verification, arithmetic checks, double-entry audit',
-      ratePerMonth: projectCommercials.dataExecutiveTwoMonthlyCost,
+      ratePerMonth: projectCommercials.employeeTwoCost,
       durationMonths: 1,
-      total: projectCommercials.dataExecutiveTwoMonthlyCost,
+      total: projectCommercials.employeeTwoCost,
       notes: 'Performs blind verification against authoritative gazettes'
     },
     {
-      component: 'Project Lead & Primary Analyst',
-      role: 'Ananda Krishnan — Analytical architecture, cross-year comparison, client review',
-      ratePerMonth: projectCommercials.projectLeadMonthlyCost,
+      component: 'Employee 3 — Senior Researcher',
+      role: 'Methodology supervision, quality control, discrepancy audits',
+      ratePerMonth: projectCommercials.employeeThreeCost,
       durationMonths: 1,
-      total: projectCommercials.projectLeadMonthlyCost,
-      notes: 'Overall analytical framework, synthesis, presentation, and client advisory'
+      total: projectCommercials.employeeThreeCost,
+      notes: 'Supervises secondary source collection and cross-year consistency'
     },
     {
       component: 'Research & Fieldwork Allowance',
@@ -131,16 +147,12 @@ export const getInternalCostBreakdown = () => {
     }
   ];
 
-  const totalCost = items.reduce((sum, item) => sum + item.total, 0);
-  const markupAmount = (totalCost * projectCommercials.markupPercentage) / 100;
-  const computedFee = totalCost + markupAmount;
-
   return {
     items,
     totalCost,
     markupPercentage: projectCommercials.markupPercentage,
     markupAmount,
-    computedFee
+    computedFee: preliminaryProjectFee
   };
 };
 
@@ -153,8 +165,8 @@ export const proposalMeta = {
   unitOfAnalysis: 'Polling-Station Level',
   preparedBy: 'Ananda Krishnan',
   company: 'Ctrl Alt Kick Ad Tech Solutions Pvt Ltd',
-  documentVersion: 'Proposal v1.0',
-  preliminaryFeeFormatted: '₹1,72,500',
+  documentVersion: 'Proposal v2.0 (Visual-First)',
+  preliminaryFeeFormatted: '₹1,20,750',
   targetDuration: '4 Weeks',
   reviewRounds: 'Two (2) consolidated review rounds',
   expenseAllowanceFormatted: '₹10,000'
@@ -173,10 +185,10 @@ export const slideList: SlideMetadata[] = [
   { id: 10, slug: 'quality-assurance', title: 'Quality Assurance', category: 'Methodology' },
   { id: 11, slug: 'project-team', title: 'Project Team', category: 'Execution' },
   { id: 12, slug: 'timeline', title: 'Timeline & Schedule', category: 'Execution' },
-  { id: 13, slug: 'preliminary-project-fee', title: 'Preliminary Commercials', category: 'Commercials' },
+  { id: 13, slug: 'commercial-proposal', title: 'Commercial Proposal', category: 'Commercials' },
   { id: 14, slug: 'payment-terms', title: 'Payment Milestones', category: 'Commercials' },
   { id: 15, slug: 'scope-and-exclusions', title: 'Scope & Exclusions', category: 'Commercials' },
-  { id: 16, slug: 'data-availability', title: 'Data Assumptions', category: 'Execution' },
-  { id: 17, slug: 'client-responsibilities', title: 'Client Responsibilities', category: 'Execution' },
+  { id: 16, slug: 'data-availability', title: 'Data Availability', category: 'Execution' },
+  { id: 17, slug: 'next-steps', title: 'Next Steps', category: 'Execution' },
   { id: 18, slug: 'approval', title: 'Approval to Proceed', category: 'Agreement' }
 ];

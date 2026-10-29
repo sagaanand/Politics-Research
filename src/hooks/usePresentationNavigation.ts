@@ -236,3 +236,4 @@ export function usePresentationNavigation({ totalSlides }: UsePresentationNaviga
     handleTouchEnd
   };
 }
+

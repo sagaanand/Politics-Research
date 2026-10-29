@@ -95,3 +95,4 @@ export const Timeline: React.FC<TimelineProps> = ({ weeks = defaultWeeks }) => {
     </div>
   );
 };
+

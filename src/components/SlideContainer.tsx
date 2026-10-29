@@ -26,3 +26,4 @@ export const SlideContainer: React.FC<SlideContainerProps> = ({ children, slideI
     </div>
   );
 };
+

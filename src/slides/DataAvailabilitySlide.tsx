@@ -1,98 +1,113 @@
 import React from 'react';
-import { ShieldAlert, FileSearch } from 'lucide-react';
+import { ShieldAlert, CheckCircle2, HelpCircle, FileCheck } from 'lucide-react';
 
 export const DataAvailabilitySlide: React.FC = () => {
-  const assumptions = [
+  const tiers = [
     {
-      title: 'Baseline Document Availability',
-      desc: 'Certain high-level election summaries and Form 20 records are currently identified, but exhaustive booth-level data across all three cycles requires focused collection.'
+      title: 'Official Records',
+      priority: 'Primary Source (Preferred)',
+      badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      icon: CheckCircle2,
+      desc: 'Form 20 final result sheets, Election Commission gazettes, and official CEO Tamil Nadu returns.'
     },
     {
-      title: 'Official Records Priority',
-      desc: 'Official records (ECI gazettes, CEO Tamil Nadu returns, Form 20) are prioritized as primary authoritative truth over secondary aggregators.'
+      title: 'Alternative Sources',
+      priority: 'Secondary Recovery',
+      badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
+      icon: FileCheck,
+      desc: 'Credible media archives, academic election datasets, and published analytical compilations.'
     },
     {
-      title: 'Credible Secondary Recovery',
-      desc: 'Where official gazetted scans are illegible or missing, credible published media archives and academic datasets will be used to reconstruct missing data.'
-    },
-    {
-      title: 'Strict Non-Fabrication Rule',
-      desc: 'Unverified, interpolated, or estimated figures will never be silently presented as confirmed historical fact. All estimates are explicitly tagged.'
-    },
-    {
-      title: 'Evidence-Based Mapping',
-      desc: 'Cross-cycle station mapping classifications (matched, split, merged, renumbered) rely strictly on documented address and voter roll continuity.'
-    },
-    {
-      title: 'Physical Retrieval & Expenses',
-      desc: 'Physical archival visits are contingent on local administrative accessibility and bounded by the approved ₹10,000 research & travel allowance.'
-    },
-    {
-      title: 'Timeline Dependency',
-      desc: 'The four-week delivery target is dependent on timely document accessibility and the volume of conflicting entries encountered during audit.'
+      title: 'Unresolved Gaps',
+      priority: 'Transparent Exception Log',
+      badgeClass: 'bg-amber-50 text-amber-800 border-amber-200',
+      icon: HelpCircle,
+      desc: 'Physically missing or illegible archival returns openly documented in the Discrepancy Register.'
     }
   ];
 
+  const supportingRules = [
+    'Official records preferred as primary evidentiary truth',
+    'Alternative sources used where appropriate to recover missing data',
+    'Conflicting values between documents recorded and reconciled',
+    'Unverified values clearly identified and never assumed',
+    'Missing records reported transparently in exception dossiers'
+  ];
+
   return (
-    <div className="flex-1 w-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 bg-white">
+    <div className="flex-1 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 bg-white">
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold tracking-widest uppercase text-[#0066CC]">
-            Ground Realities
+            Ground Realities & Integrity
           </span>
           <span className="text-[#86868B] text-xs">/ Section 15</span>
         </div>
-        <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#1D1D1F]">
+        <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F]">
           Evidence First. Transparency Always.
         </h2>
-        <p className="mt-1 text-xs sm:text-sm text-[#6E6E73]">
-          Core operational assumptions and realistic data constraints governing the Viralimalai research
+        <p className="mt-2 text-sm sm:text-base text-[#6E6E73]">
+          How our research methodology prioritises authentic gazetted sources while maintaining absolute transparency regarding gaps.
         </p>
       </div>
 
-      {/* Assumptions Cards Grid */}
-      <div className="my-auto py-3">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-          {assumptions.slice(0, 6).map((item, idx) => (
-            <div
-              key={idx}
-              className="p-4 rounded-xl bg-[#FBFBFD] border border-[#E5E5EA] flex flex-col justify-between hover:border-[#0066CC]/30 transition-colors"
-            >
-              <div>
-                <div className="flex items-center gap-2 pb-2 mb-2 border-b border-[#E5E5EA]">
-                  <span className="w-5 h-5 rounded-full bg-blue-50 text-[#0066CC] flex items-center justify-center font-mono text-[10px] font-bold">
-                    0{idx + 1}
-                  </span>
-                  <h3 className="text-xs font-bold text-[#1D1D1F] leading-snug">{item.title}</h3>
+      {/* Dominant Visual Tri-Fold Diagram (65% of slide) */}
+      <div className="my-auto py-4 space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {tiers.map((t, idx) => {
+            const Icon = t.icon;
+            return (
+              <div
+                key={idx}
+                className="p-6 rounded-3xl bg-[#FBFBFD] border border-[#E5E5EA] shadow-sm hover:border-[#0066CC]/40 hover:bg-white transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-3 border-b border-[#E5E5EA]">
+                    <Icon className="w-5 h-5 text-[#0066CC]" />
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border font-bold ${t.badgeClass}`}>
+                      {t.priority}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 text-base sm:text-lg font-bold text-[#1D1D1F]">
+                    {t.title}
+                  </h3>
+
+                  <p className="mt-2 text-xs text-[#6E6E73] leading-relaxed">
+                    {t.desc}
+                  </p>
                 </div>
-                <p className="text-[11px] text-[#6E6E73] leading-relaxed">
-                  {item.desc}
-                </p>
+
+                <div className="mt-4 pt-3 border-t border-[#F0F0F2] text-[10px] font-mono text-[#86868B]">
+                  Tier 0{idx + 1} Protocol
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* 7th item + Summary banner */}
-        <div className="mt-3 p-3.5 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5 text-xs text-[#1D1D1F]">
-            <FileSearch className="w-4 h-4 text-[#0066CC] shrink-0" />
-            <span>
-              <strong>Operational Realism:</strong> {assumptions[6].title} — {assumptions[6].desc}
-            </span>
+        {/* 5 Clean Governance Rules Pills */}
+        <div className="p-4 rounded-2xl bg-white border border-[#E5E5EA] shadow-sm">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-[#1D1D1F] mb-2.5">
+            Core Operating Rules:
           </div>
-          <span className="text-[10px] font-mono text-[#0066CC] shrink-0 hidden sm:inline">
-            Risk-Managed Timeline
-          </span>
+          <div className="flex flex-wrap gap-2 text-xs">
+            {supportingRules.map((rule, idx) => (
+              <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FBFBFD] border border-[#E5E5EA] text-[#1D1D1F]">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#0066CC] shrink-0" />
+                <span className="text-[11px] font-medium leading-snug">{rule}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Recovery Disclaimer */}
-      <div className="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 flex items-start gap-2.5 text-xs text-amber-900 leading-relaxed">
+      {/* Real-World Recovery Disclaimer */}
+      <div className="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200 flex items-start gap-2.5 text-xs text-amber-900 leading-relaxed">
         <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
         <p>
-          <strong>No Universal Guarantee of Missing Records:</strong> The research team will make every commercially reasonable effort to recover missing or damaged historical booth records using alternative archives. However, this does not guarantee that every single historical record from earlier cycles will be recoverable if official government repositories lack the physical document.
+          <strong>No Absolute Recovery Guarantee:</strong> While every diligent effort will be made to retrieve historical records, recovery of every single damaged or missing historical page from earlier election cycles cannot be unconditionally guaranteed.
         </p>
       </div>
 

@@ -1,85 +1,91 @@
 # Viralimalai Constituency — Historical Electoral Data Research & Analysis
-## Interactive Client Proposal Presentation Website
+## Visual-First Presentation Proposal Website (Apple Keynote Style)
 
-A high-end, presentation-style research proposal website inspired by **Apple Keynote**, engineered with React, TypeScript, Vite, Tailwind CSS, and Framer Motion.
+A high-end, presentation-style research proposal website inspired by **Apple Keynote**, engineered with **React, TypeScript, Vite, Tailwind CSS, and Framer Motion**.
 
 ---
 
-### Project Metadata
+### Project Overview
 
-- **Client Engagement:** Viralimalai Constituency — Historical Electoral Data Research & Analysis
-- **Coverage:** 2016, 2021, and 2026 Tamil Nadu Legislative Assembly Election Years
+- **Project Title:** Viralimalai Constituency — Historical Electoral Data Research & Analysis
+- **Research Coverage:** 2016, 2021, and 2026 Tamil Nadu Legislative Assembly Election Years
 - **Geography:** Viralimalai Assembly Constituency (AC-179) only
 - **Prepared By:** Ananda Krishnan
 - **Company:** Ctrl Alt Kick Ad Tech Solutions Pvt Ltd
-- **Commercial Estimate:** ₹1,72,500 (Preliminary fixed-fee estimate)
-- **Target Timeline:** 4 Weeks
+- **Commercial Estimate:** **₹1,20,750** (Preliminary project quotation)
+- **Target Duration:** 4 Weeks
 
 ---
 
-### Key Capabilities & Features
+### Visual-First Architecture & Design Principles
 
 1. **Apple Keynote Aesthetic:**
-   - Warm neutral backdrop (`#FBFBFD`), near-black typography (`#1D1D1F`), restrained dividers (`#E5E5EA`).
+   - 60–70% visual storytelling (diagrams, timelines, schema mockups, and flowcharts) and 30–40% concise speaker-friendly text.
+   - Clean off-white background (`#FBFBFD`), near-black typography (`#1D1D1F`), restrained dividers (`#E5E5EA`).
    - Deep blue subtle accent (`#0066CC`).
-   - Clean analytical cards, structured data tables, and generous whitespace.
+   - Large headlines, short subheadings, and generous whitespace.
 
-2. **18-Slide Sequential Structure:**
-   - **Slide 01 — Cover**: Typography, scope badges, abstract data grid motif.
-   - **Slide 02 — Executive Summary**: Narrative, core scope metrics (3 cycles, 1 AC, booth level).
-   - **Slide 03 — Research Objectives**: 4 pillars (Consolidation, Mapping, Comparative Analysis, Verification).
-   - **Slide 04 — Project Scope**: Parameters & 12 electoral research categories.
-   - **Slide 05 — Research Methodology**: 6-stage traceable research pipeline.
-   - **Slide 06 — Data Architecture**: Master schema specification across dimensions, measures, statistics, and governance.
-   - **Slide 07 — Polling Station Mapping**: Cross-cycle continuity flow & 5 outcome states.
-   - **Slide 08 — Analytical Framework**: 5 analytical dimensions with aggregate data boundaries.
-   - **Slide 09 — Research Deliverables**: 7 concrete deliverables (Excel dataset, PDF report, presentation deck, audit registers).
-   - **Slide 10 — Quality Assurance**: 5-tier review chain from primary extraction to lead sign-off.
-   - **Slide 11 — Project Team**: Multi-disciplinary staffing without exposing internal salaries.
-   - **Slide 12 — Timeline**: 4-week structured roadmap with realistic qualifications.
-   - **Slide 13 — Preliminary Commercial Estimate**: ₹1,72,500 preliminary fee & inclusions.
-   - **Slide 14 — Payment Milestones**: 40% Kickoff (₹69,000) / 30% Interim (₹51,750) / 30% Final (₹51,750).
-   - **Slide 15 — Scope & Exclusions**: Definitive boundaries (no software dev, no voter profiling).
-   - **Slide 16 — Data Availability & Assumptions**: Real-world archival retrieval constraints.
-   - **Slide 17 — Client Responsibilities & Next Steps**: 7 client duties and 6-step onboarding sequence.
-   - **Slide 18 — Approval**: Fillable/printable formal authorization schedule with IT Act disclaimer.
+2. **18 Sequential Visual Slides:**
+   - **Slide 01 — Cover**: Typography, scope badges, abstract data coordinate grid visual.
+   - **Slide 02 — Executive Summary**: Three election cycles (2016, 2021, 2026) converging into one Unified Master Dataset.
+   - **Slide 03 — Research Objectives**: 4 visual cards with custom vector diagrams: Collect, Verify, Map, Analyse.
+   - **Slide 04 — Project Scope**: Scope pillars & 6 core data categories: Votes · Candidates · Parties · Margins · Turnout · NOTA.
+   - **Slide 05 — Research Methodology**: 6-step horizontal process diagram from Source Discovery to Reporting.
+   - **Slide 06 — Data Architecture**: Stylised spreadsheet database mockup highlighting key schema fields.
+   - **Slide 07 — Polling Station Mapping**: Cross-cycle 3-column continuity diagram (2016 → 2021 → 2026) with 4-status legend.
+   - **Slide 08 — Analytical Framework**: 5 visual categories with abstract curve/matrix shapes & aggregate outcome caveat.
+   - **Slide 09 — Research Deliverables**: 7 visual mockup tiles (Excel, PDF report, slide deck, audit registers) + scope exclusion.
+   - **Slide 10 — Quality Assurance**: 4-tier sequential review gates and 3 principles (Source-backed, Cross-checked, Transparent gaps).
+   - **Slide 11 — Project Team**: Dedicated role cards for Anand, Senior Researcher, Data Executive 1, and Data Executive 2 (salaries hidden).
+   - **Slide 12 — Timeline**: Full-width visual roadmap with 4 weekly phases & schedule qualification.
+   - **Slide 13 — Commercial Proposal**: Dominant visual fee **₹1,20,750** + minimal 4-part breakdown (team, lead, expenses, deliverables).
+   - **Slide 14 — Payment Terms**: 3 clear payment milestones: 40% Kickoff (₹48,300) / 30% Interim (₹36,225) / 30% Final (₹36,225).
+   - **Slide 15 — Scope & Exclusions**: 2-column comparison layout (Formally Included vs Explicitly Excluded).
+   - **Slide 16 — Data Availability**: Tri-fold evidentiary hierarchy (Official Records, Alternative Sources, Unresolved Gaps).
+   - **Slide 17 — Next Steps**: 4-step mobilization sequence + compact client responsibilities.
+   - **Slide 18 — Approval**: Formal client authorization schedule with fillable fields and legal notice.
 
-3. **Hybrid Navigation System:**
-   - **Keyboard Shortcuts:**
-     - `Right Arrow` / `Space` / `Page Down`: Next slide
-     - `Left Arrow` / `Page Up`: Previous slide
-     - `Home` / `End`: First / Last slide
-     - `O`: Toggle 18-slide Keynote visual overview sorter
-     - `F`: Toggle Fullscreen mode
-     - `Esc`: Close modal / exit fullscreen
-     - Smart input guard: keyboard shortcuts are bypassed when typing in form inputs.
-   - **Mouse Wheel / Trackpad:** Debounced gesture detection with internal scrollable container support to prevent accidental slide skips.
-   - **Touch:** Smooth swipe detection on mobile devices.
-   - **Direct URL Hash:** `#slide-1` through `#slide-18` support for bookmarking and deep linking.
-   - **Slide Counter & Progress:** Displays current slide status (`04 / 18`) and interactive clickable progress bar.
+3. **Centralised Costing Configuration (`src/data/proposal.ts`):**
+   ```ts
+   export const projectCommercials = {
+     projectLeadCost: 50000,
+     employeeOneCost: 15000,
+     employeeTwoCost: 15000,
+     employeeThreeCost: 15000,
+     researchExpenses: 10000,
+     markupPercentage: 15,
+     advancePercentage: 40,
+     interimPercentage: 30,
+     finalPercentage: 30
+   };
+   // Total Estimated Cost: ₹1,05,000
+   // 15% Markup on Cost: ₹15,750
+   // Preliminary Project Fee: ₹1,20,750
+   // Advance (40%): ₹48,300 | Interim (30%): ₹36,225 | Final (30%): ₹36,225
+   ```
+   *Note: Internal salary breakdowns are kept strictly in a confidential modal (`Internal Basis`) and not displayed on client-facing slides.*
 
-4. **Internal Costing Architecture Mode:**
-   - Client-facing presentation displays only the preliminary quotation (`₹1,72,500`) and milestone schedule.
-   - An internal confidential reference view (`Internal Basis`) is available via top navigation for team reviews, detailing internal rates, lead allocation, and the 15% agency markup.
-
-5. **Print-to-PDF Ready:**
-   - Dedicated `@media print` stylesheet formats all 18 slides on distinct A4 landscape pages.
-   - Navigation controls and interactive chrome are stripped in print output.
+4. **Interactive Navigation:**
+   - **Keyboard:** `Right / Space` (Next), `Left` (Prev), `Home / End`, `O` (18-Slide Grid Overview), `F` (Fullscreen), `Esc`.
+   - **Mouse Wheel / Trackpad:** Debounced to prevent multi-slide skipping with internal container scroll protection.
+   - **Touch:** Horizontal swipe gestures for mobile/tablet.
+   - **URL Hash:** Deep linking support (`#slide-1` to `#slide-18`).
+   - **Print-to-PDF:** Dedicated `@media print` layout formatting all 18 slides on individual A4 landscape pages.
 
 ---
 
-### Development Setup
+### Local Development
 
 ```bash
-# 1. Install dependencies
+# Install dependencies
 npm install
 
-# 2. Run local development server
+# Start development server
 npm run dev
 
-# 3. Build for production and verify types
+# Run production build and type check
 npm run build
 
-# 4. Preview production build locally
+# Preview production build locally
 npm run preview
 ```

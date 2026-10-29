@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, FileSpreadsheet, GitMerge, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Layers, Sparkles } from 'lucide-react';
 import { proposalMeta } from '../data/proposal';
 
 interface CoverSlideProps {
@@ -8,110 +8,146 @@ interface CoverSlideProps {
 
 export const CoverSlide: React.FC<CoverSlideProps> = ({ onNext }) => {
   return (
-    <div className="flex-1 w-full flex flex-col justify-between p-8 sm:p-12 md:p-16 lg:p-20 relative overflow-hidden bg-white">
-      {/* Restrained abstract data-grid motif in background */}
-      <div className="absolute top-0 right-0 w-2/5 h-full opacity-[0.035] pointer-events-none flex items-center justify-center">
-        <svg viewBox="0 0 400 400" className="w-full h-full text-[#0066CC]" fill="currentColor">
-          <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-            <rect width="39" height="39" fill="none" stroke="currentColor" strokeWidth="1" />
-            <circle cx="20" cy="20" r="1.5" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+    <div className="flex-1 w-full h-full flex flex-col justify-between p-8 sm:p-12 md:p-16 lg:p-20 relative overflow-hidden bg-white select-none">
+      {/* Visual Canvas Background: Abstract Electoral Coordinate Grid & Contour Field */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.06] overflow-hidden flex items-center justify-center">
+        <svg viewBox="0 0 1200 800" className="w-full h-full text-[#0066CC]" fill="none" stroke="currentColor">
+          <defs>
+            <radialGradient id="radialGlow" cx="60%" cy="40%" r="50%">
+              <stop offset="0%" stopColor="#0066CC" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#0066CC" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          {/* Coordinate grid lines */}
+          {Array.from({ length: 25 }).map((_, i) => (
+            <line key={`h-${i}`} x1="0" y1={i * 35} x2="1200" y2={i * 35} strokeWidth="1" strokeDasharray="3 6" />
+          ))}
+          {Array.from({ length: 35 }).map((_, i) => (
+            <line key={`v-${i}`} x1={i * 35} y1="0" x2={i * 35} y2="800" strokeWidth="1" strokeDasharray="3 6" />
+          ))}
+          {/* Abstract constituency topological contours */}
+          <path
+            d="M200 400 C 400 200, 600 600, 800 350 S 1100 500, 1150 300"
+            strokeWidth="2.5"
+            stroke="currentColor"
+            fill="none"
+          />
+          <path
+            d="M150 480 C 350 280, 650 680, 850 420 S 1050 560, 1180 380"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            fill="none"
+          />
+          <circle cx="750" cy="380" r="160" fill="url(#radialGlow)" />
+          {/* Key polling coordinate beacons */}
+          <circle cx="320" cy="310" r="6" fill="#0066CC" />
+          <circle cx="580" cy="480" r="5" fill="#0066CC" />
+          <circle cx="820" cy="360" r="7" fill="#0066CC" />
+          <circle cx="940" cy="440" r="5" fill="#0066CC" />
         </svg>
       </div>
 
-      {/* Top Header */}
+      {/* Top Bar Metadata */}
       <div className="flex items-center justify-between z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA]">
-          <span className="w-2 h-2 rounded-full bg-[#0066CC]" />
+        <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#F5F5F7] border border-[#E5E5EA]">
+          <span className="w-2 h-2 rounded-full bg-[#0066CC] animate-pulse" />
           <span className="text-xs font-semibold tracking-widest uppercase text-[#0066CC]">
             Research Proposal
           </span>
         </div>
-        <div className="text-xs font-mono text-[#86868B] tracking-wide">
-          Ref: CK-RES-2026-VRM
+        <div className="flex items-center gap-2 font-mono text-xs text-[#86868B]">
+          <Sparkles className="w-3.5 h-3.5 text-[#0066CC]" />
+          <span>Institutional Research Series · 2026</span>
         </div>
       </div>
 
-      {/* Central Content with generous whitespace and Apple Keynote typography */}
-      <div className="my-auto py-8 z-10 max-w-4xl">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#1D1D1F] leading-[1.08]">
-          Viralimalai Constituency
+      {/* Central Hero Block (Visual + Typography) */}
+      <div className="my-auto py-6 z-10 max-w-4xl">
+        <div className="inline-block mb-3">
+          <span className="text-sm font-semibold tracking-wider uppercase text-[#0066CC]">
+            Assembly Constituency 179 · Tamil Nadu
+          </span>
+        </div>
+
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-[#1D1D1F] leading-[1.02]">
+          Viralimalai<br />
+          <span className="text-[#0066CC]">Constituency</span>
         </h1>
-        <p className="mt-4 sm:mt-5 text-xl sm:text-2xl md:text-3xl font-light text-[#6E6E73] tracking-tight">
+
+        <p className="mt-5 text-xl sm:text-2xl md:text-3xl font-light text-[#6E6E73] tracking-tight max-w-3xl">
           Historical Electoral Data Research & Analysis
         </p>
 
-        <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 text-sm sm:text-base font-medium text-[#1D1D1F]">
-          <span className="text-[#0066CC]">Polling Station Mapping & Performance Analysis</span>
-          <span className="text-[#C7C7CC]">•</span>
-          <span className="font-mono text-[#6E6E73] bg-[#F5F5F7] px-2.5 py-0.5 rounded border border-[#E5E5EA]">
+        {/* Minimal pill banner */}
+        <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-medium">
+          <div className="px-4 py-1.5 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-[#1D1D1F]">
+            Polling Station Mapping & Performance Analysis
+          </div>
+          <div className="px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0066CC] border border-blue-200 font-mono font-bold">
             {proposalMeta.coverageYearsFormatted}
-          </span>
-          <span className="text-[#C7C7CC]">•</span>
-          <span className="text-[#6E6E73]">Tamil Nadu Legislative Assembly</span>
+          </div>
         </div>
 
-        {/* 3 Core Scope Badges */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
-          <div className="p-4 rounded-xl bg-[#FBFBFD] border border-[#E5E5EA] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-50 text-[#0066CC]">
-              <FileSpreadsheet className="w-5 h-5" />
+        {/* Visual Highlights: 3 Clean Keynote Cards */}
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-[#E5E5EA] shadow-sm flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0066CC] flex items-center justify-center shrink-0 font-mono font-bold text-base">
+              03
             </div>
             <div>
-              <div className="text-xs text-[#86868B] uppercase tracking-wider font-medium">Dataset Scope</div>
-              <div className="text-sm font-semibold text-[#1D1D1F]">3 General Elections</div>
+              <div className="text-xs font-bold text-[#1D1D1F]">Election Cycles</div>
+              <div className="text-[11px] text-[#86868B]">2016 · 2021 · 2026</div>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#FBFBFD] border border-[#E5E5EA] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-50 text-[#0066CC]">
-              <GitMerge className="w-5 h-5" />
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-[#E5E5EA] shadow-sm flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0066CC] flex items-center justify-center shrink-0">
+              <Layers className="w-5 h-5 text-[#0066CC]" />
             </div>
             <div>
-              <div className="text-xs text-[#86868B] uppercase tracking-wider font-medium">Granularity</div>
-              <div className="text-sm font-semibold text-[#1D1D1F]">Polling-Station Level</div>
+              <div className="text-xs font-bold text-[#1D1D1F]">Booth Granularity</div>
+              <div className="text-[11px] text-[#86868B]">Station-level mapping</div>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#FBFBFD] border border-[#E5E5EA] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-50 text-[#0066CC]">
-              <ShieldCheck className="w-5 h-5" />
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-[#E5E5EA] shadow-sm flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0066CC] flex items-center justify-center shrink-0 font-mono font-bold text-xs text-[#0066CC]">
+              100%
             </div>
             <div>
-              <div className="text-xs text-[#86868B] uppercase tracking-wider font-medium">Methodology</div>
-              <div className="text-sm font-semibold text-[#1D1D1F]">Multi-Source Verification</div>
+              <div className="text-xs font-bold text-[#1D1D1F]">Source Traceability</div>
+              <div className="text-[11px] text-[#86868B]">Document-backed verification</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Footer / Prepared By */}
-      <div className="pt-6 sm:pt-8 border-t border-[#E5E5EA] flex flex-col sm:flex-row sm:items-end justify-between gap-4 z-10">
+      <div className="pt-6 border-t border-[#E5E5EA] flex flex-col sm:flex-row sm:items-end justify-between gap-4 z-10">
         <div>
-          <div className="text-xs uppercase tracking-widest text-[#86868B] font-medium">
+          <div className="text-[11px] uppercase tracking-widest text-[#86868B] font-semibold">
             Prepared By
           </div>
-          <div className="mt-1 text-base font-semibold text-[#1D1D1F]">
+          <div className="mt-1 text-base font-bold text-[#1D1D1F]">
             {proposalMeta.preparedBy}
           </div>
-          <div className="text-xs text-[#6E6E73] font-medium">
+          <div className="text-xs text-[#6E6E73]">
             {proposalMeta.company}
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <div className="text-right hidden sm:block">
-            <div className="text-xs text-[#86868B]">Presentation Deck</div>
-            <div className="text-xs font-mono text-[#6E6E73]">18 Slides · Confidential</div>
+            <div className="text-xs text-[#86868B]">Presentation Format</div>
+            <div className="text-xs font-mono text-[#6E6E73]">18 Slides · Visual First</div>
           </div>
           {onNext && (
             <button
               type="button"
               onClick={onNext}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1D1D1F] text-white hover:bg-[#0066CC] transition-colors text-xs font-medium"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1D1D1F] text-white hover:bg-[#0066CC] transition-all text-xs font-medium shadow-sm hover:shadow"
             >
-              Begin Presentation
+              <span>Begin Presentation</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
