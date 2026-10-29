@@ -8,25 +8,29 @@ import { SlideContainer } from './SlideContainer';
 import { proposalMeta, slideList } from '../data/proposal';
 import { Lock } from 'lucide-react';
 
-// Import all 18 slide components
+// Import all 22 slide components
 import { CoverSlide } from '../slides/CoverSlide';
-import { ExecutiveSummarySlide } from '../slides/ExecutiveSummarySlide';
+import { AboutFounderSlide } from '../slides/AboutFounderSlide';
+import { ProfessionalExperienceSlide } from '../slides/ProfessionalExperienceSlide';
+import { CompanyEcosystemSlide } from '../slides/CompanyEcosystemSlide';
+import { CtrlAltKickSlide } from '../slides/CtrlAltKickSlide';
+import { DigitalCakeSlide } from '../slides/DigitalCakeSlide';
+import { NamNilamInfraSlide } from '../slides/NamNilamInfraSlide';
+import { PoliticalExperienceSlide } from '../slides/PoliticalExperienceSlide';
+import { CaseStudyTamilNaduSlide } from '../slides/CaseStudyTamilNaduSlide';
+import { CaseStudyLokSabhaSlide } from '../slides/CaseStudyLokSabhaSlide';
+import { ExperienceRelationSlide } from '../slides/ExperienceRelationSlide';
+import { ProjectOverviewSlide } from '../slides/ProjectOverviewSlide';
 import { ResearchObjectivesSlide } from '../slides/ResearchObjectivesSlide';
 import { ScopeSlide } from '../slides/ScopeSlide';
 import { ResearchMethodologySlide } from '../slides/ResearchMethodologySlide';
-import { DataArchitectureSlide } from '../slides/DataArchitectureSlide';
 import { PollingStationMappingSlide } from '../slides/PollingStationMappingSlide';
 import { AnalyticalFrameworkSlide } from '../slides/AnalyticalFrameworkSlide';
 import { DeliverablesSlide } from '../slides/DeliverablesSlide';
 import { QualityAssuranceSlide } from '../slides/QualityAssuranceSlide';
-import { ProjectTeamSlide } from '../slides/ProjectTeamSlide';
-import { TimelineSlide } from '../slides/TimelineSlide';
-import { CommercialsSlide } from '../slides/CommercialsSlide';
-import { PaymentTermsSlide } from '../slides/PaymentTermsSlide';
-import { AssumptionsSlide } from '../slides/AssumptionsSlide';
-import { DataAvailabilitySlide } from '../slides/DataAvailabilitySlide';
-import { ClientResponsibilitiesSlide } from '../slides/ClientResponsibilitiesSlide';
-import { ApprovalSlide } from '../slides/ApprovalSlide';
+import { TeamAndTimelineSlide } from '../slides/TeamAndTimelineSlide';
+import { CommercialsAndPaymentSlide } from '../slides/CommercialsAndPaymentSlide';
+import { ApprovalAndNextStepsSlide } from '../slides/ApprovalAndNextStepsSlide';
 
 export const PresentationShell: React.FC = () => {
   const totalSlides = slideList.length;
@@ -42,39 +46,47 @@ export const PresentationShell: React.FC = () => {
       case 0:
         return <CoverSlide onNext={navigation.nextSlide} />;
       case 1:
-        return <ExecutiveSummarySlide />;
+        return <AboutFounderSlide />;
       case 2:
-        return <ResearchObjectivesSlide />;
+        return <ProfessionalExperienceSlide />;
       case 3:
-        return <ScopeSlide />;
+        return <CompanyEcosystemSlide />;
       case 4:
-        return <ResearchMethodologySlide />;
+        return <CtrlAltKickSlide />;
       case 5:
-        return <DataArchitectureSlide />;
+        return <DigitalCakeSlide />;
       case 6:
-        return <PollingStationMappingSlide />;
+        return <NamNilamInfraSlide />;
       case 7:
-        return <AnalyticalFrameworkSlide />;
+        return <PoliticalExperienceSlide />;
       case 8:
-        return <DeliverablesSlide />;
+        return <CaseStudyTamilNaduSlide />;
       case 9:
-        return <QualityAssuranceSlide />;
+        return <CaseStudyLokSabhaSlide />;
       case 10:
-        return <ProjectTeamSlide />;
+        return <ExperienceRelationSlide />;
       case 11:
-        return <TimelineSlide />;
+        return <ProjectOverviewSlide />;
       case 12:
-        return <CommercialsSlide onOpenInternalCosting={() => setIsInternalCostOpen(true)} />;
+        return <ResearchObjectivesSlide />;
       case 13:
-        return <PaymentTermsSlide />;
+        return <ScopeSlide />;
       case 14:
-        return <AssumptionsSlide />;
+        return <ResearchMethodologySlide />;
       case 15:
-        return <DataAvailabilitySlide />;
+        return <PollingStationMappingSlide />;
       case 16:
-        return <ClientResponsibilitiesSlide onGoToApproval={() => navigation.goToSlide(17)} />;
+        return <AnalyticalFrameworkSlide />;
       case 17:
-        return <ApprovalSlide onPrint={handlePrint} />;
+        return <DeliverablesSlide />;
+      case 18:
+        return <QualityAssuranceSlide />;
+      case 19:
+        return <TeamAndTimelineSlide />;
+      case 20:
+        return <CommercialsAndPaymentSlide onOpenInternalCosting={() => setIsInternalCostOpen(true)} />;
+      case 21:
+        return <ApprovalAndNextStepsSlide onPrint={handlePrint} />;
       default:
         return <CoverSlide onNext={navigation.nextSlide} />;
     }
@@ -133,7 +145,7 @@ export const PresentationShell: React.FC = () => {
               type="button"
               onClick={() => navigation.setIsOverviewOpen(true)}
               className="px-2.5 py-1 rounded-full bg-[#F5F5F7] hover:bg-[#E5E5EA] text-[#1D1D1F] font-mono text-xs font-semibold border border-[#E5E5EA] transition-colors"
-              title="Click to view all 18 slides (Hotkey: O)"
+              title="Click to view all 22 slides (Hotkey: O)"
             >
               {String(navigation.currentIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
             </button>
@@ -174,7 +186,7 @@ export const PresentationShell: React.FC = () => {
         onClose={() => setIsInternalCostOpen(false)}
       />
 
-      {/* Hidden Print Container: Sequentially renders all 18 slides for browser Print/PDF export */}
+      {/* Hidden Print Container: Sequentially renders all 22 slides for browser Print/PDF export */}
       <div className="slide-container-print-all hidden">
         {slideList.map((slide, idx) => (
           <div key={slide.id} className="print-slide-page">

@@ -32,7 +32,7 @@ export interface SlideMetadata {
   slug: string;
   title: string;
   subtitle?: string;
-  category: 'Overview' | 'Methodology' | 'Analysis' | 'Execution' | 'Commercials' | 'Agreement';
+  category: 'Overview' | 'Founder & Companies' | 'Political Experience' | 'Methodology' | 'Analysis' | 'Commercials & Sign-off';
 }
 
 export const projectCommercials: ProjectCommercials = {
@@ -165,7 +165,7 @@ export const proposalMeta = {
   unitOfAnalysis: 'Polling-Station Level',
   preparedBy: 'Ananda Krishnan',
   company: 'Ctrl Alt Kick Ad Tech Solutions Pvt Ltd',
-  documentVersion: 'Proposal v2.0 (Visual-First)',
+  documentVersion: 'Comprehensive Research Proposal v3.0',
   preliminaryFeeFormatted: '₹1,20,750',
   targetDuration: '4 Weeks',
   reviewRounds: 'Two (2) consolidated review rounds',
@@ -174,21 +174,25 @@ export const proposalMeta = {
 
 export const slideList: SlideMetadata[] = [
   { id: 1, slug: 'cover', title: 'Cover', category: 'Overview' },
-  { id: 2, slug: 'executive-summary', title: 'Executive Summary', category: 'Overview' },
-  { id: 3, slug: 'research-objectives', title: 'Research Objectives', category: 'Overview' },
-  { id: 4, slug: 'project-scope', title: 'Project Scope', category: 'Overview' },
-  { id: 5, slug: 'research-methodology', title: 'Research Methodology', category: 'Methodology' },
-  { id: 6, slug: 'data-architecture', title: 'Data Architecture', category: 'Methodology' },
-  { id: 7, slug: 'polling-station-mapping', title: 'Polling Station Mapping', category: 'Methodology' },
-  { id: 8, slug: 'analytical-framework', title: 'Analytical Framework', category: 'Analysis' },
-  { id: 9, slug: 'deliverables', title: 'Deliverables', category: 'Analysis' },
-  { id: 10, slug: 'quality-assurance', title: 'Quality Assurance', category: 'Methodology' },
-  { id: 11, slug: 'project-team', title: 'Project Team', category: 'Execution' },
-  { id: 12, slug: 'timeline', title: 'Timeline & Schedule', category: 'Execution' },
-  { id: 13, slug: 'commercial-proposal', title: 'Commercial Proposal', category: 'Commercials' },
-  { id: 14, slug: 'payment-terms', title: 'Payment Milestones', category: 'Commercials' },
-  { id: 15, slug: 'scope-and-exclusions', title: 'Scope & Exclusions', category: 'Commercials' },
-  { id: 16, slug: 'data-availability', title: 'Data Availability', category: 'Execution' },
-  { id: 17, slug: 'next-steps', title: 'Next Steps', category: 'Execution' },
-  { id: 18, slug: 'approval', title: 'Approval to Proceed', category: 'Agreement' }
+  { id: 2, slug: 'about-ananda-krishnan', title: 'About Ananda Krishnan', category: 'Founder & Companies' },
+  { id: 3, slug: 'professional-experience', title: 'Professional Experience', category: 'Founder & Companies' },
+  { id: 4, slug: 'company-ecosystem', title: 'Company Ecosystem', category: 'Founder & Companies' },
+  { id: 5, slug: 'ctrl-alt-kick', title: 'Ctrl Alt Kick', category: 'Founder & Companies' },
+  { id: 6, slug: 'digital-cake', title: 'Digital Cake', category: 'Founder & Companies' },
+  { id: 7, slug: 'nam-nilam-infra', title: 'Nam Nilam Infra', category: 'Founder & Companies' },
+  { id: 8, slug: 'political-research-experience', title: 'Political Research Track Record', category: 'Political Experience' },
+  { id: 9, slug: 'case-study-tamil-nadu-2021', title: 'Case Study: Tamil Nadu 2021', category: 'Political Experience' },
+  { id: 10, slug: 'case-study-lok-sabha-2024', title: 'Case Study: Lok Sabha 2024', category: 'Political Experience' },
+  { id: 11, slug: 'relates-to-viralimalai', title: 'Application to Viralimalai', category: 'Political Experience' },
+  { id: 12, slug: 'project-overview', title: 'Project Overview', category: 'Overview' },
+  { id: 13, slug: 'research-objectives', title: 'Research Objectives', category: 'Overview' },
+  { id: 14, slug: 'project-scope', title: 'Project Scope', category: 'Overview' },
+  { id: 15, slug: 'research-methodology', title: 'Research Methodology', category: 'Methodology' },
+  { id: 16, slug: 'polling-station-mapping', title: 'Polling Station Mapping', category: 'Methodology' },
+  { id: 17, slug: 'analytical-framework', title: 'Analytical Framework', category: 'Analysis' },
+  { id: 18, slug: 'deliverables', title: 'Deliverables', category: 'Analysis' },
+  { id: 19, slug: 'quality-assurance', title: 'Quality Assurance', category: 'Methodology' },
+  { id: 20, slug: 'team-and-timeline', title: 'Team & Timeline', category: 'Commercials & Sign-off' },
+  { id: 21, slug: 'commercials-and-payment', title: 'Commercials & Payment', category: 'Commercials & Sign-off' },
+  { id: 22, slug: 'approval-and-next-steps', title: 'Approval & Next Steps', category: 'Commercials & Sign-off' }
 ];

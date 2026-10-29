@@ -26,17 +26,17 @@ export const SlideOverviewModal: React.FC<SlideOverviewModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white/95 rounded-2xl w-full max-w-5xl max-h-[85vh] flex flex-col shadow-2xl border border-[#E5E5EA] overflow-hidden"
+        className="bg-white/95 rounded-3xl w-full max-w-6xl max-h-[88vh] flex flex-col shadow-2xl border border-[#E5E5EA] overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E5EA]">
           <div className="flex items-center gap-2.5">
             <Layers className="w-5 h-5 text-[#0066CC]" />
-            <h2 id="slide-navigator-title" className="text-base font-semibold text-[#1D1D1F]">
+            <h2 id="slide-navigator-title" className="text-base font-bold text-[#1D1D1F]">
               Slide Navigator
             </h2>
-            <span className="text-xs text-[#86868B] font-mono">18 Slides</span>
+            <span className="text-xs text-[#86868B] font-mono">{slideList.length} Slides</span>
           </div>
 
           <button
@@ -51,7 +51,7 @@ export const SlideOverviewModal: React.FC<SlideOverviewModalProps> = ({
 
         {/* Grid of Slides */}
         <div className="flex-1 overflow-y-auto p-6 keynote-scroll">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
             {slideList.map((slide: SlideMetadata, idx: number) => {
               const isCurrent = idx === currentIndex;
               return (
@@ -62,27 +62,27 @@ export const SlideOverviewModal: React.FC<SlideOverviewModalProps> = ({
                     onSelectSlide(idx);
                     onClose();
                   }}
-                  className={`group text-left p-3.5 rounded-xl border transition-all duration-150 flex flex-col justify-between aspect-[16/10] relative ${
+                  className={`group text-left p-3.5 rounded-2xl border transition-all duration-150 flex flex-col justify-between aspect-[16/10] relative ${
                     isCurrent
-                      ? 'border-[#0066CC] ring-2 ring-[#0066CC]/20 bg-blue-50/30'
-                      : 'border-[#E5E5EA] bg-white hover:border-[#C7C7CC] hover:bg-[#F5F5F7]/50 shadow-sm'
+                      ? 'border-[#0066CC] ring-2 ring-[#0066CC]/20 bg-blue-50/40'
+                      : 'border-[#E5E5EA] bg-white hover:border-[#0066CC]/40 hover:bg-[#F8FAFC] shadow-sm'
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
                     <span
-                      className={`font-mono text-xs font-semibold ${
+                      className={`font-mono text-xs font-bold ${
                         isCurrent ? 'text-[#0066CC]' : 'text-[#86868B]'
                       }`}
                     >
                       {String(slide.id).padStart(2, '0')}
                     </span>
-                    <span className="text-[10px] uppercase tracking-wider font-medium px-1.5 py-0.5 rounded bg-[#F5F5F7] text-[#6E6E73] border border-[#E5E5EA]/60">
+                    <span className="text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-[#F5F5F7] text-[#6E6E73] border border-[#E5E5EA]/60 truncate max-w-[80px]">
                       {slide.category}
                     </span>
                   </div>
 
                   <div className="mt-2">
-                    <h3 className="text-xs font-medium text-[#1D1D1F] leading-snug line-clamp-2 group-hover:text-[#0066CC] transition-colors">
+                    <h3 className="text-xs font-bold text-[#1D1D1F] leading-snug line-clamp-2 group-hover:text-[#0066CC] transition-colors">
                       {slide.title}
                     </h3>
                   </div>
@@ -90,7 +90,7 @@ export const SlideOverviewModal: React.FC<SlideOverviewModalProps> = ({
                   <div className="w-full mt-2 pt-2 border-t border-[#F0F0F2] flex items-center justify-between text-[10px] text-[#86868B]">
                     <span>Slide {slide.id}</span>
                     {isCurrent && (
-                      <span className="text-[#0066CC] font-medium flex items-center gap-1">
+                      <span className="text-[#0066CC] font-bold flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" /> Active
                       </span>
                     )}
@@ -107,7 +107,7 @@ export const SlideOverviewModal: React.FC<SlideOverviewModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="text-xs font-medium text-[#1D1D1F] hover:text-[#0066CC]"
+            className="text-xs font-bold text-[#1D1D1F] hover:text-[#0066CC]"
           >
             Close
           </button>
@@ -116,4 +116,3 @@ export const SlideOverviewModal: React.FC<SlideOverviewModalProps> = ({
     </div>
   );
 };
-
