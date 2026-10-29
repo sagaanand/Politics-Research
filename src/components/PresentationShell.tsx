@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { usePresentationNavigation } from '../hooks/usePresentationNavigation';
 import { ProgressIndicator } from './ProgressIndicator';
 import { NavigationControls } from './NavigationControls';
 import { SlideOverviewModal } from './SlideOverviewModal';
-import { InternalCostModal } from './InternalCostModal';
 import { SlideContainer } from './SlideContainer';
 import { proposalMeta, slideList } from '../data/proposal';
-import { Lock } from 'lucide-react';
 
 // Import all 22 slide components
 import { CoverSlide } from '../slides/CoverSlide';
@@ -35,7 +33,6 @@ import { ApprovalAndNextStepsSlide } from '../slides/ApprovalAndNextStepsSlide';
 export const PresentationShell: React.FC = () => {
   const totalSlides = slideList.length;
   const navigation = usePresentationNavigation({ totalSlides });
-  const [isInternalCostOpen, setIsInternalCostOpen] = useState(false);
 
   const handlePrint = () => {
     window.print();
@@ -84,7 +81,7 @@ export const PresentationShell: React.FC = () => {
       case 19:
         return <TeamAndTimelineSlide />;
       case 20:
-        return <CommercialsAndPaymentSlide onOpenInternalCosting={() => setIsInternalCostOpen(true)} />;
+        return <CommercialsAndPaymentSlide />;
       case 21:
         return <ApprovalAndNextStepsSlide onPrint={handlePrint} />;
       default:
@@ -123,22 +120,11 @@ export const PresentationShell: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Status Badges & Internal Costing Trigger */}
+          {/* Right Status Badges & Slide Index */}
           <div className="flex items-center gap-2.5 shrink-0">
             <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#F5F5F7] text-[#6E6E73] border border-[#E5E5EA] hidden md:inline">
               {currentMetadata.category}
             </span>
-
-            {/* Internal Costing Model Link (Confidential) */}
-            <button
-              type="button"
-              onClick={() => setIsInternalCostOpen(true)}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium text-[#6E6E73] hover:text-[#1D1D1F] hover:bg-[#F5F5F7] border border-transparent hover:border-[#E5E5EA] transition-all"
-              title="View Internal Costing Model (Internal Reference Only)"
-            >
-              <Lock className="w-3 h-3 text-[#86868B]" />
-              <span className="hidden sm:inline">Internal Basis</span>
-            </button>
 
             {/* Slide Index Pill */}
             <button
@@ -178,12 +164,6 @@ export const PresentationShell: React.FC = () => {
         onClose={() => navigation.setIsOverviewOpen(false)}
         currentIndex={navigation.currentIndex}
         onSelectSlide={navigation.goToSlide}
-      />
-
-      {/* Internal Costing Reference Modal */}
-      <InternalCostModal
-        isOpen={isInternalCostOpen}
-        onClose={() => setIsInternalCostOpen(false)}
       />
 
       {/* Hidden Print Container: Sequentially renders all 22 slides for browser Print/PDF export */}

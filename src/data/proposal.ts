@@ -10,15 +10,6 @@ export interface ProjectCommercials {
   finalPercentage: number;
 }
 
-export interface InternalCostItem {
-  component: string;
-  role: string;
-  ratePerMonth: number;
-  durationMonths: number;
-  total: number;
-  notes: string;
-}
-
 export interface MilestonePayment {
   percentage: number;
   title: string;
@@ -101,60 +92,6 @@ export const getMilestones = (fee: number = preliminaryProjectFee): MilestonePay
     description: 'Delivery of master Excel dataset, analytical PDF report, slide presentation, source register, and discrepancy documentation.'
   }
 ];
-
-// Internal cost breakdown for internal review purposes only
-export const getInternalCostBreakdown = () => {
-  const items: InternalCostItem[] = [
-    {
-      component: 'Anand — Project Lead & Primary Analyst',
-      role: 'Overall analytical architecture, cross-year comparison, client review',
-      ratePerMonth: projectCommercials.projectLeadCost,
-      durationMonths: 1,
-      total: projectCommercials.projectLeadCost,
-      notes: 'Overall analytical framework, synthesis, presentation, and client advisory'
-    },
-    {
-      component: 'Employee 1 — Data Executive 1',
-      role: 'Primary document collection, structured extraction, digitization',
-      ratePerMonth: projectCommercials.employeeOneCost,
-      durationMonths: 1,
-      total: projectCommercials.employeeOneCost,
-      notes: 'Primary data entry and physical/digital archive extraction'
-    },
-    {
-      component: 'Employee 2 — Data Executive 2',
-      role: 'Independent cross-verification, arithmetic checks, double-entry audit',
-      ratePerMonth: projectCommercials.employeeTwoCost,
-      durationMonths: 1,
-      total: projectCommercials.employeeTwoCost,
-      notes: 'Performs blind verification against authoritative gazettes'
-    },
-    {
-      component: 'Employee 3 — Senior Researcher',
-      role: 'Methodology supervision, quality control, discrepancy audits',
-      ratePerMonth: projectCommercials.employeeThreeCost,
-      durationMonths: 1,
-      total: projectCommercials.employeeThreeCost,
-      notes: 'Supervises secondary source collection and cross-year consistency'
-    },
-    {
-      component: 'Research & Fieldwork Allowance',
-      role: 'Document procurement, archival records access, local transport/stipends',
-      ratePerMonth: projectCommercials.researchExpenses,
-      durationMonths: 1,
-      total: projectCommercials.researchExpenses,
-      notes: 'Subject to actual vouchers and expense limits'
-    }
-  ];
-
-  return {
-    items,
-    totalCost,
-    markupPercentage: projectCommercials.markupPercentage,
-    markupAmount,
-    computedFee: preliminaryProjectFee
-  };
-};
 
 export const proposalMeta = {
   projectTitle: 'Viralimalai Assembly Constituency',

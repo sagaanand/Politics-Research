@@ -2,11 +2,7 @@ import React from 'react';
 import { CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
 import { paymentMilestones, proposalMeta } from '../data/proposal';
 
-interface CommercialsAndPaymentSlideProps {
-  onOpenInternalCosting?: () => void;
-}
-
-export const CommercialsAndPaymentSlide: React.FC<CommercialsAndPaymentSlideProps> = ({ onOpenInternalCosting }) => {
+export const CommercialsAndPaymentSlide: React.FC = () => {
   const milestones = [
     {
       pct: 40,
@@ -162,15 +158,7 @@ export const CommercialsAndPaymentSlide: React.FC<CommercialsAndPaymentSlideProp
       {/* Footer */}
       <div className="pt-4 border-t border-[#E5E5EA] flex items-center justify-between text-xs text-[#86868B]">
         <span>Viralimalai Constituency Electoral Research Proposal</span>
-        {onOpenInternalCosting && (
-          <button
-            type="button"
-            onClick={onOpenInternalCosting}
-            className="text-xs font-mono text-[#86868B] hover:text-[#0066CC] underline underline-offset-2 no-print"
-          >
-            Internal Reference Costing Model (Confidential)
-          </button>
-        )}
+        <span>Ctrl Alt Kick Ad Tech Solutions Pvt Ltd</span>
       </div>
     </div>
   );

@@ -2,11 +2,7 @@ import React from 'react';
 import { Users, Award, Compass, FileCheck, AlertCircle } from 'lucide-react';
 import { proposalMeta } from '../data/proposal';
 
-interface CommercialsSlideProps {
-  onOpenInternalCosting?: () => void;
-}
-
-export const CommercialsSlide: React.FC<CommercialsSlideProps> = ({ onOpenInternalCosting }) => {
+export const CommercialsSlide: React.FC = () => {
   const breakdownComponents = [
     {
       title: 'Research Team',
@@ -120,15 +116,7 @@ export const CommercialsSlide: React.FC<CommercialsSlideProps> = ({ onOpenIntern
       {/* Footer */}
       <div className="pt-4 border-t border-[#E5E5EA] flex items-center justify-between text-xs text-[#86868B]">
         <span>Viralimalai Constituency Electoral Research Proposal</span>
-        {onOpenInternalCosting && (
-          <button
-            type="button"
-            onClick={onOpenInternalCosting}
-            className="text-xs font-mono text-[#86868B] hover:text-[#0066CC] underline underline-offset-2 no-print"
-          >
-            Internal Reference Costing Model (Confidential)
-          </button>
-        )}
+        <span>Ctrl Alt Kick Ad Tech Solutions Pvt Ltd</span>
       </div>
     </div>
   );
