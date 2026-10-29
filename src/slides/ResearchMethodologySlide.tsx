@@ -3,64 +3,55 @@ import { Search, FolderDown, FileSpreadsheet, CheckCheck, GitMerge, BarChart2, S
 
 export const ResearchMethodologySlide: React.FC = () => {
   const steps = [
-    { num: '1', title: 'Discover Sources', desc: 'Identify official gazettes, Form 20s & secondary archives', icon: Search },
-    { num: '2', title: 'Collect Documents', desc: 'Acquire physical & digital election materials', icon: FolderDown },
-    { num: '3', title: 'Extract Data', desc: 'Digitise station-level vote counts into structured schema', icon: FileSpreadsheet },
-    { num: '4', title: 'Verify Records', desc: 'Independent blind cross-checks & arithmetic reconciliation', icon: CheckCheck },
-    { num: '5', title: 'Map Stations', desc: 'Trace continuity, renumbering, splits & mergers', icon: GitMerge },
-    { num: '6', title: 'Analyse Results', desc: 'Synthesise margins, turnout & historical performance', icon: BarChart2 }
+    { num: '01', title: 'Source Discovery', desc: 'Identify official gazettes, Form 20s & secondary archives.', icon: Search },
+    { num: '02', title: 'Document Collection', desc: 'Acquire physical & digital election materials.', icon: FolderDown },
+    { num: '03', title: 'Structured Extraction', desc: 'Digitise station vote counts into standard schema.', icon: FileSpreadsheet },
+    { num: '04', title: 'Verification', desc: 'Independent blind cross-checks & arithmetic reconciliation.', icon: CheckCheck },
+    { num: '05', title: 'Station Mapping', desc: 'Trace continuity, renumbering, splits & mergers.', icon: GitMerge },
+    { num: '06', title: 'Analysis & Reporting', desc: 'Synthesise margins, turnout & historical performance.', icon: BarChart2 }
   ];
 
   return (
-    <div className="flex-1 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 bg-white">
+    <div className="flex-1 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 bg-white select-none">
       {/* Header */}
       <div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest uppercase text-[#0066CC]">
-            Workflow & Rigour
-          </span>
-          <span className="text-[#86868B] text-xs">/ Section 04</span>
+        <div className="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold tracking-widest uppercase text-[#0066CC] mb-2">
+          Methodology Pipeline
         </div>
-        <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F]">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#1D1D1F]">
           Six Steps. One Traceable Process.
         </h2>
-        <p className="mt-2 text-sm sm:text-base text-[#6E6E73]">
+        <p className="mt-2 text-lg sm:text-xl text-[#4B5563] max-w-4xl">
           A sequential, audit-ready research pipeline guaranteeing evidentiary integrity at every milestone.
         </p>
       </div>
 
-      {/* Large Process Diagram (65% of slide) */}
+      {/* Dominant Process Diagram (65% of slide) */}
       <div className="my-auto py-4 w-full">
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#FBFBFD] border border-[#E5E5EA] shadow-sm">
-          {/* 6 Connected Steps Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5 relative">
+        <div className="p-8 sm:p-10 rounded-3xl bg-[#FBFBFD] border border-[#E5E5EA] shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
             {steps.map((st) => {
               const Icon = st.icon;
               return (
                 <div
                   key={st.num}
-                  className="p-4 sm:p-5 rounded-2xl bg-white border border-[#E5E5EA] shadow-sm hover:border-[#0066CC]/50 transition-all flex flex-col justify-between group relative"
+                  className="p-5 rounded-2xl bg-white border border-[#E5E5EA] shadow-sm hover:border-[#0066CC]/50 transition-all flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between">
-                      <span className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066CC] font-mono font-bold text-sm flex items-center justify-center border border-blue-100 group-hover:bg-[#0066CC] group-hover:text-white transition-colors">
-                        0{st.num}
+                    <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#E5E5EA]">
+                      <span className="w-9 h-9 rounded-xl bg-blue-50 text-[#0066CC] font-mono font-bold text-sm flex items-center justify-center group-hover:bg-[#0066CC] group-hover:text-white transition-colors">
+                        {st.num}
                       </span>
                       <Icon className="w-4 h-4 text-[#86868B] group-hover:text-[#0066CC] transition-colors" />
                     </div>
 
-                    <h3 className="mt-4 text-sm font-bold text-[#1D1D1F] leading-snug">
+                    <h3 className="text-base font-bold text-[#1D1D1F] leading-snug">
                       {st.title}
                     </h3>
 
-                    <p className="mt-2 text-[11px] text-[#6E6E73] leading-relaxed">
+                    <p className="mt-2 text-xs sm:text-sm text-[#4B5563] leading-relaxed">
                       {st.desc}
                     </p>
-                  </div>
-
-                  <div className="mt-4 pt-2.5 border-t border-[#F0F0F2] flex items-center justify-between text-[10px] text-[#86868B] font-mono">
-                    <span>Stage {st.num}/6</span>
-                    <span className="text-[#0066CC]">Verified</span>
                   </div>
                 </div>
               );
@@ -70,16 +61,11 @@ export const ResearchMethodologySlide: React.FC = () => {
       </div>
 
       {/* Bottom Core Standard Banner */}
-      <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <ShieldCheck className="w-5 h-5 text-[#0066CC] shrink-0" />
-          <p className="text-xs sm:text-sm font-medium text-[#1D1D1F]">
-            <strong className="text-[#0066CC]">Fundamental Research Principle:</strong> No unavailable or unverified value will be silently represented as confirmed fact.
-          </p>
-        </div>
-        <span className="text-[11px] font-mono text-[#0066CC] shrink-0 hidden md:inline font-bold">
-          100% Audit-Ready
-        </span>
+      <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 flex items-center gap-3">
+        <ShieldCheck className="w-5 h-5 text-[#0066CC] shrink-0" />
+        <p className="text-sm sm:text-base font-semibold text-[#1D1D1F]">
+          No unavailable or unverified value will be silently represented as confirmed fact.
+        </p>
       </div>
 
       {/* Footer */}
