@@ -8,28 +8,20 @@ import {
 } from '../data/master3YData';
 import {
   Search,
-  Download,
   ArrowUpDown,
-  Printer,
-  ArrowLeft,
   X,
   CheckCircle2,
   TrendingUp,
-  GitCompare,
-  BarChart3,
   Building
 } from 'lucide-react';
+import { ConstituencyNav, NavPageId } from '../components/ConstituencyNav';
 
 interface Master3YReportPageProps {
-  onBackToProposal?: () => void;
-  onGoToOverview?: () => void;
-  onGoToComparison?: () => void;
+  onNavigate?: (page: NavPageId) => void;
 }
 
 export const Master3YReportPage: React.FC<Master3YReportPageProps> = ({
-  onBackToProposal,
-  onGoToOverview,
-  onGoToComparison
+  onNavigate
 }) => {
   const [activeSection, setActiveSection] = useState<string>('glance');
   const [searchTerm, setSearchTerm] = useState('');
@@ -133,82 +125,18 @@ export const Master3YReportPage: React.FC<Master3YReportPageProps> = ({
 
   return (
     <div className="min-h-screen bg-[#FBFBFD] text-[#1D1D1F] flex flex-col font-sans print:bg-white print:text-black">
-      {/* Top Header Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E5EA] shadow-sm no-print">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2 sm:gap-3">
-              {onBackToProposal && (
-                <button
-                  type="button"
-                  onClick={onBackToProposal}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#6E6E73] hover:bg-[#F5F5F7] border border-[#E5E5EA] transition-all"
-                  title="Return to Proposal Presentation Deck"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Proposal Deck</span>
-                </button>
-              )}
-              {onGoToOverview && (
-                <button
-                  type="button"
-                  onClick={onGoToOverview}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#0066CC] hover:bg-blue-50 border border-blue-200 transition-all"
-                  title="View 2026 Electoral Overview Page"
-                >
-                  <BarChart3 className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">2026 Overview</span>
-                </button>
-              )}
-              {onGoToComparison && (
-                <button
-                  type="button"
-                  onClick={onGoToComparison}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-purple-700 hover:bg-purple-50 border border-purple-200 transition-all"
-                  title="View 2021 vs 2026 Comparison Page"
-                >
-                  <GitCompare className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">2021 vs 2026</span>
-                </button>
-              )}
+      {/* Global Universal Header */}
+      <ConstituencyNav
+        activePage="master"
+        onNavigate={onNavigate || (() => {})}
+        onExportCSV={handleExportCSV}
+        exportLabel="Export Master CSV"
+        subtitle="Decade-Long Longitudinal Electoral Master Study (3 Election Cycles)"
+      />
 
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="font-extrabold text-base sm:text-lg text-[#1D1D1F] tracking-tight">
-                    179 Viralimalai
-                  </h1>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-                    2016 • 2021 • 2026 Master
-                  </span>
-                </div>
-                <div className="text-[11px] text-[#6E6E73] truncate hidden sm:block">
-                  Decade-Long Longitudinal Electoral Master Study (3 Election Cycles)
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleExportCSV}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E5E5EA] hover:border-[#1D1D1F] text-xs font-bold text-[#1D1D1F] shadow-sm transition-all"
-              >
-                <Download className="w-3.5 h-3.5 text-[#0066CC]" />
-                <span className="hidden md:inline">Export Master CSV</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E5E5EA] hover:border-[#1D1D1F] text-xs font-bold text-[#1D1D1F] shadow-sm transition-all"
-              >
-                <Printer className="w-3.5 h-3.5 text-[#0066CC]" />
-                <span className="hidden md:inline">Print / PDF</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Table of Contents Navigation Pills */}
+      {/* Sub Navigation Bar for Page Sections */}
+      <div className="sticky top-16 z-30 bg-white/90 backdrop-blur-md border-b border-[#E5E5EA] shadow-xs no-print">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none text-xs font-bold">
             <button
               type="button"
@@ -276,7 +204,7 @@ export const Master3YReportPage: React.FC<Master3YReportPageProps> = ({
             </button>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-12">

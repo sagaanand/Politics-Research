@@ -11,27 +11,20 @@ import {
 } from '../data/boothAnalysisData';
 import {
   Search,
-  Download,
   ArrowUpDown,
-  Printer,
   Award,
-  ArrowLeft,
   X,
   FileSpreadsheet,
-  CheckCircle2,
-  GitCompare
+  CheckCircle2
 } from 'lucide-react';
+import { ConstituencyNav, NavPageId } from '../components/ConstituencyNav';
 
 interface ElectoralOverviewPageProps {
-  onBackToProposal?: () => void;
-  onGoToComparison?: () => void;
-  onGoToMaster?: () => void;
+  onNavigate?: (page: NavPageId) => void;
 }
 
 export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({
-  onBackToProposal,
-  onGoToComparison,
-  onGoToMaster
+  onNavigate
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedArea, setSelectedArea] = useState<string>('all');
@@ -181,83 +174,19 @@ export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({
 
   return (
     <div className="min-h-screen bg-[#FBFBFD] text-[#1D1D1F] flex flex-col font-sans print:bg-white print:text-black">
-      {/* Top Header Bar */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E5EA] shadow-sm no-print">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              {onBackToProposal && (
-                <button
-                  type="button"
-                  onClick={onBackToProposal}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#6E6E73] hover:bg-[#F5F5F7] border border-[#E5E5EA] transition-all"
-                  title="Return to Proposal Presentation Deck"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Proposal Deck</span>
-                </button>
-              )}
-              {onGoToComparison && (
-                <button
-                  type="button"
-                  onClick={onGoToComparison}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all shadow-sm"
-                  title="Open 2021 vs 2026 Polling Comparison Page"
-                >
-                  <GitCompare className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">2021 vs 2026 Comparison</span>
-                  <span className="sm:hidden">2021 vs 2026</span>
-                </button>
-              )}
-              {onGoToMaster && (
-                <button
-                  type="button"
-                  onClick={onGoToMaster}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-sm"
-                  title="Open 3-Election Master Report (2016-2026)"
-                >
-                  <span className="hidden sm:inline">2016-2026 Master</span>
-                  <span className="sm:hidden">Master</span>
-                </button>
-              )}
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="font-extrabold text-base sm:text-lg text-[#1D1D1F] tracking-tight">
-                    Viralimalai Constituency 2026
-                  </h1>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#0066CC] border border-blue-200 hidden sm:inline">
-                    Electoral Overview
-                  </span>
-                </div>
-                <div className="text-[11px] text-[#6E6E73] truncate">
-                  276 Polling Stations · 20 Counting Rounds · Form 20 Reconciled
-                </div>
-              </div>
-            </div>
+      {/* Global Universal Header */}
+      <ConstituencyNav
+        activePage="2026"
+        onNavigate={onNavigate || (() => {})}
+        onExportCSV={handleExportCSV}
+        exportLabel="Download CSV"
+        subtitle="276 Polling Stations · 20 Counting Rounds · Form 20 Reconciled"
+      />
 
-            {/* Quick Actions */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleExportCSV}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E5E5EA] hover:border-[#1D1D1F] text-xs font-bold text-[#1D1D1F] shadow-sm transition-all"
-              >
-                <Download className="w-3.5 h-3.5 text-[#0066CC]" />
-                <span className="hidden md:inline">Download CSV</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E5E5EA] hover:border-[#1D1D1F] text-xs font-bold text-[#1D1D1F] shadow-sm transition-all"
-              >
-                <Printer className="w-3.5 h-3.5 text-[#0066CC]" />
-                <span className="hidden md:inline">Print / PDF</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Table of Contents Navigation Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none text-xs font-bold">
+      {/* Sub Navigation Bar for Page Sections */}
+      <div className="sticky top-16 z-30 bg-white/90 backdrop-blur-md border-b border-[#E5E5EA] shadow-xs no-print">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none text-xs font-bold">
             <button
               type="button"
               onClick={() => scrollTo('section-glance')}
@@ -342,7 +271,7 @@ export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({
             </button>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Container */}
       <main className="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-12">

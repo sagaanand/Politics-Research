@@ -6,6 +6,7 @@ import { NavigationControls } from './NavigationControls';
 import { SlideOverviewModal } from './SlideOverviewModal';
 import { SlideContainer } from './SlideContainer';
 import { proposalMeta, slideList } from '../data/proposal';
+import { NavPageId } from './ConstituencyNav';
 
 // Import all 22 slide components
 import { CoverSlide } from '../slides/CoverSlide';
@@ -32,12 +33,14 @@ import { CommercialsAndPaymentSlide } from '../slides/CommercialsAndPaymentSlide
 import { ApprovalAndNextStepsSlide } from '../slides/ApprovalAndNextStepsSlide';
 
 interface PresentationShellProps {
+  onNavigate?: (page: NavPageId) => void;
   onOpenAnalysis?: () => void;
   onOpenComparison?: () => void;
   onOpenMaster?: () => void;
 }
 
 export const PresentationShell: React.FC<PresentationShellProps> = ({
+  onNavigate,
   onOpenAnalysis,
   onOpenComparison,
   onOpenMaster
@@ -132,41 +135,88 @@ export const PresentationShell: React.FC<PresentationShellProps> = ({
           </div>
 
           {/* Right Status Badges & Slide Index */}
-          <div className="flex items-center gap-2.5 shrink-0">
-            {onOpenAnalysis && (
-              <button
-                type="button"
-                onClick={onOpenAnalysis}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#0066CC] hover:bg-[#0052A3] transition-all shadow-sm"
-                title="Open Viralimalai 2026 Complete Electoral Overview Page"
-              >
-                <BarChart3 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">2026 Overview</span>
-              </button>
-            )}
+          <div className="flex items-center gap-2 shrink-0">
+            {onNavigate ? (
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => onNavigate('2016')}
+                  className="px-2.5 py-1 rounded-full text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all"
+                  title="Open 2016 Election Report"
+                >
+                  2016
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('2021')}
+                  className="px-2.5 py-1 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all"
+                  title="Open 2021 Election Report"
+                >
+                  2021
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('2026')}
+                  className="px-2.5 py-1 rounded-full text-xs font-bold text-white bg-[#0066CC] hover:bg-[#0052A3] transition-all shadow-xs"
+                  title="Open 2026 Election Report"
+                >
+                  2026
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('comparison')}
+                  className="px-2.5 py-1 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all hidden sm:inline"
+                  title="Open 2021 vs 2026 Comparison"
+                >
+                  21 vs 26
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('master')}
+                  className="px-2.5 py-1 rounded-full text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all hidden sm:inline"
+                  title="Open 10-Year Master Study (2016-2026)"
+                >
+                  Master
+                </button>
+              </div>
+            ) : (
+              <>
+                {onOpenAnalysis && (
+                  <button
+                    type="button"
+                    onClick={onOpenAnalysis}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#0066CC] hover:bg-[#0052A3] transition-all shadow-sm"
+                    title="Open Viralimalai 2026 Complete Electoral Overview Page"
+                  >
+                    <BarChart3 className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">2026 Overview</span>
+                  </button>
+                )}
 
-            {onOpenComparison && (
-              <button
-                type="button"
-                onClick={onOpenComparison}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all shadow-sm"
-                title="Open 2021 vs 2026 Polling Comparison Page"
-              >
-                <GitCompare className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">2021 vs 2026</span>
-              </button>
-            )}
+                {onOpenComparison && (
+                  <button
+                    type="button"
+                    onClick={onOpenComparison}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all shadow-sm"
+                    title="Open 2021 vs 2026 Polling Comparison Page"
+                  >
+                    <GitCompare className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">2021 vs 2026</span>
+                  </button>
+                )}
 
-            {onOpenMaster && (
-              <button
-                type="button"
-                onClick={onOpenMaster}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-sm"
-                title="Open 2016-2026 3-Election Master Report"
-              >
-                <span className="hidden sm:inline">2016-2026 Master</span>
-                <span className="sm:hidden">Master</span>
-              </button>
+                {onOpenMaster && (
+                  <button
+                    type="button"
+                    onClick={onOpenMaster}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-sm"
+                    title="Open 2016-2026 3-Election Master Report"
+                  >
+                    <span className="hidden sm:inline">2016-2026 Master</span>
+                    <span className="sm:hidden">Master</span>
+                  </button>
+                )}
+              </>
             )}
 
             <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#F5F5F7] text-[#6E6E73] border border-[#E5E5EA] hidden md:inline">
