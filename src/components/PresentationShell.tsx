@@ -1,4 +1,5 @@
 import React from 'react';
+import { BarChart3 } from 'lucide-react';
 import { usePresentationNavigation } from '../hooks/usePresentationNavigation';
 import { ProgressIndicator } from './ProgressIndicator';
 import { NavigationControls } from './NavigationControls';
@@ -30,7 +31,11 @@ import { TeamAndTimelineSlide } from '../slides/TeamAndTimelineSlide';
 import { CommercialsAndPaymentSlide } from '../slides/CommercialsAndPaymentSlide';
 import { ApprovalAndNextStepsSlide } from '../slides/ApprovalAndNextStepsSlide';
 
-export const PresentationShell: React.FC = () => {
+interface PresentationShellProps {
+  onOpenAnalysis?: () => void;
+}
+
+export const PresentationShell: React.FC<PresentationShellProps> = ({ onOpenAnalysis }) => {
   const totalSlides = slideList.length;
   const navigation = usePresentationNavigation({ totalSlides });
 
@@ -122,6 +127,18 @@ export const PresentationShell: React.FC = () => {
 
           {/* Right Status Badges & Slide Index */}
           <div className="flex items-center gap-2.5 shrink-0">
+            {onOpenAnalysis && (
+              <button
+                type="button"
+                onClick={onOpenAnalysis}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#0066CC] hover:bg-[#0052A3] transition-all shadow-sm"
+                title="Open Polling Station Comparison & Strength Analysis Page"
+              >
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Booth Analysis</span>
+              </button>
+            )}
+
             <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#F5F5F7] text-[#6E6E73] border border-[#E5E5EA] hidden md:inline">
               {currentMetadata.category}
             </span>
