@@ -25,11 +25,13 @@ import {
 interface ElectoralOverviewPageProps {
   onBackToProposal?: () => void;
   onGoToComparison?: () => void;
+  onGoToMaster?: () => void;
 }
 
 export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({
   onBackToProposal,
-  onGoToComparison
+  onGoToComparison,
+  onGoToMaster
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedArea, setSelectedArea] = useState<string>('all');
@@ -205,6 +207,17 @@ export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({
                   <GitCompare className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">2021 vs 2026 Comparison</span>
                   <span className="sm:hidden">2021 vs 2026</span>
+                </button>
+              )}
+              {onGoToMaster && (
+                <button
+                  type="button"
+                  onClick={onGoToMaster}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-sm"
+                  title="Open 3-Election Master Report (2016-2026)"
+                >
+                  <span className="hidden sm:inline">2016-2026 Master</span>
+                  <span className="sm:hidden">Master</span>
                 </button>
               )}
               <div>

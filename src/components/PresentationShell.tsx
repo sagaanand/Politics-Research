@@ -34,11 +34,13 @@ import { ApprovalAndNextStepsSlide } from '../slides/ApprovalAndNextStepsSlide';
 interface PresentationShellProps {
   onOpenAnalysis?: () => void;
   onOpenComparison?: () => void;
+  onOpenMaster?: () => void;
 }
 
 export const PresentationShell: React.FC<PresentationShellProps> = ({
   onOpenAnalysis,
-  onOpenComparison
+  onOpenComparison,
+  onOpenMaster
 }) => {
   const totalSlides = slideList.length;
   const navigation = usePresentationNavigation({ totalSlides });
@@ -151,7 +153,19 @@ export const PresentationShell: React.FC<PresentationShellProps> = ({
                 title="Open 2021 vs 2026 Polling Comparison Page"
               >
                 <GitCompare className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">2021 vs 2026 Comparison</span>
+                <span className="hidden sm:inline">2021 vs 2026</span>
+              </button>
+            )}
+
+            {onOpenMaster && (
+              <button
+                type="button"
+                onClick={onOpenMaster}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-sm"
+                title="Open 2016-2026 3-Election Master Report"
+              >
+                <span className="hidden sm:inline">2016-2026 Master</span>
+                <span className="sm:hidden">Master</span>
               </button>
             )}
 

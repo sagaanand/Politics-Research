@@ -24,11 +24,13 @@ import {
 interface Comparison2021vs2026PageProps {
   onBackToProposal?: () => void;
   onGoToOverview?: () => void;
+  onGoToMaster?: () => void;
 }
 
 export const Comparison2021vs2026Page: React.FC<Comparison2021vs2026PageProps> = ({
   onBackToProposal,
-  onGoToOverview
+  onGoToOverview,
+  onGoToMaster
 }) => {
   const [activeTab, setActiveTab] = useState<'parent' | 'raw308'>('parent');
   const [searchTerm, setSearchTerm] = useState('');
@@ -168,6 +170,17 @@ export const Comparison2021vs2026Page: React.FC<Comparison2021vs2026PageProps> =
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">2026 Overview</span>
+                </button>
+              )}
+              {onGoToMaster && (
+                <button
+                  type="button"
+                  onClick={onGoToMaster}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-sm"
+                  title="Open 3-Election Master Report (2016-2026)"
+                >
+                  <span className="hidden sm:inline">2016-2026 Master</span>
+                  <span className="sm:hidden">Master</span>
                 </button>
               )}
               {onBackToProposal && (
