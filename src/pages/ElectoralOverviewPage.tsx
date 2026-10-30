@@ -18,14 +18,19 @@ import {
   ArrowLeft,
   X,
   FileSpreadsheet,
-  CheckCircle2
+  CheckCircle2,
+  GitCompare
 } from 'lucide-react';
 
 interface ElectoralOverviewPageProps {
   onBackToProposal?: () => void;
+  onGoToComparison?: () => void;
 }
 
-export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({ onBackToProposal }) => {
+export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({
+  onBackToProposal,
+  onGoToComparison
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedArea, setSelectedArea] = useState<string>('all');
   const [selectedWinner, setSelectedWinner] = useState<string>('all');
@@ -183,11 +188,23 @@ export const ElectoralOverviewPage: React.FC<ElectoralOverviewPageProps> = ({ on
                 <button
                   type="button"
                   onClick={onBackToProposal}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#0066CC] hover:bg-blue-50 border border-blue-200 transition-all"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#6E6E73] hover:bg-[#F5F5F7] border border-[#E5E5EA] transition-all"
                   title="Return to Proposal Presentation Deck"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Proposal Deck</span>
+                </button>
+              )}
+              {onGoToComparison && (
+                <button
+                  type="button"
+                  onClick={onGoToComparison}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all shadow-sm"
+                  title="Open 2021 vs 2026 Polling Comparison Page"
+                >
+                  <GitCompare className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">2021 vs 2026 Comparison</span>
+                  <span className="sm:hidden">2021 vs 2026</span>
                 </button>
               )}
               <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3 } from 'lucide-react';
+import { BarChart3, GitCompare } from 'lucide-react';
 import { usePresentationNavigation } from '../hooks/usePresentationNavigation';
 import { ProgressIndicator } from './ProgressIndicator';
 import { NavigationControls } from './NavigationControls';
@@ -33,9 +33,13 @@ import { ApprovalAndNextStepsSlide } from '../slides/ApprovalAndNextStepsSlide';
 
 interface PresentationShellProps {
   onOpenAnalysis?: () => void;
+  onOpenComparison?: () => void;
 }
 
-export const PresentationShell: React.FC<PresentationShellProps> = ({ onOpenAnalysis }) => {
+export const PresentationShell: React.FC<PresentationShellProps> = ({
+  onOpenAnalysis,
+  onOpenComparison
+}) => {
   const totalSlides = slideList.length;
   const navigation = usePresentationNavigation({ totalSlides });
 
@@ -135,7 +139,19 @@ export const PresentationShell: React.FC<PresentationShellProps> = ({ onOpenAnal
                 title="Open Viralimalai 2026 Complete Electoral Overview Page"
               >
                 <BarChart3 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">2026 Electoral Overview</span>
+                <span className="hidden sm:inline">2026 Overview</span>
+              </button>
+            )}
+
+            {onOpenComparison && (
+              <button
+                type="button"
+                onClick={onOpenComparison}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all shadow-sm"
+                title="Open 2021 vs 2026 Polling Comparison Page"
+              >
+                <GitCompare className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">2021 vs 2026 Comparison</span>
               </button>
             )}
 
