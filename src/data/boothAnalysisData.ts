@@ -8198,3 +8198,29 @@ export const all276Booths: BoothRecord[] = [
     "slabName": "10% - 40% Margin of Total"
   }
 ];
+
+export const top8Strongholds = [
+  { boothNo: 186, locality: 'Meyyakoundanpatti', votes: 626, lead: 483, stationName: 'AdiDravidar Welfare Elemantary School, Meyyakoundanpatti' },
+  { boothNo: 107, locality: 'Sangampatti', votes: 583, lead: 412, stationName: 'Panchayat Union Primary School, Sangampatti' },
+  { boothNo: 165, locality: 'Kurumpatti', votes: 586, lead: 412, stationName: 'Panchayat Union Elementary School, Kurumpatti' },
+  { boothNo: 59, locality: 'Mullaiyur', votes: 573, lead: 410, stationName: 'Panchayat Union Elementary School, Mullaiyur' },
+  { boothNo: 97, locality: 'Poyyamani', votes: 576, lead: 408, stationName: 'Panchayat Union Elementary School, Poyyamani' },
+  { boothNo: 84, locality: 'Vanathirayanpatti', votes: 587, lead: 404, stationName: 'Panchayat Union Primary School, Vanathirayanpatti' },
+  { boothNo: 92, locality: 'Pattanapatti', votes: 535, lead: 399, stationName: 'Panchayat Union Primary School, Pattanapatti' },
+  { boothNo: 95, locality: 'Seralapatti', votes: 628, lead: 393, stationName: 'Panchayat Union Middle School, Seralapatti' }
+];
+
+export const localityCoverage = [
+  { area: 'Viralimalai', boothsLed: 10, totalBooths: 11, booths: [63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73] },
+  { area: 'Illuppur / Illupur', boothsLed: 10, totalBooths: 14, booths: [189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202] },
+  { area: 'Annavasal', boothsLed: 6, totalBooths: 8, booths: [207, 208, 209, 210, 211, 212, 213, 214] },
+  { area: 'Nambanpatti', boothsLed: 4, totalBooths: 4, booths: [85, 86, 87, 88] },
+  { area: 'Kalkudi', boothsLed: 4, totalBooths: 4, booths: [3, 4, 5, 6] },
+  { area: 'Mandaiyur', boothsLed: 4, totalBooths: 4, booths: [32, 33, 34, 35] },
+  { area: 'Parambur', boothsLed: 4, totalBooths: 4, booths: [250, 251, 253, 255] },
+  { area: 'Mangudi', boothsLed: 4, totalBooths: 4, booths: [132, 133, 265, 266] },
+  { area: 'Kulathur', boothsLed: 4, totalBooths: 4, booths: [140, 141, 142, 143] }
+];
+
+export const mathurClusterBooths = [26, 27, 28, 29, 30, 31];
+export const mukkannamalaipattiClusterBooths = [233, 234, 235, 236];

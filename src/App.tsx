@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { PresentationShell } from './components/PresentationShell';
-import { BoothAnalysisPage } from './pages/BoothAnalysisPage';
+import { ElectoralOverviewPage } from './pages/ElectoralOverviewPage';
 
 export const App: React.FC = () => {
-  const getInitialPage = (): 'proposal' | 'analysis' => {
-    if (typeof window !== 'undefined' && window.location.hash.toLowerCase().includes('analysis')) {
-      return 'analysis';
+  const getInitialPage = (): 'overview' | 'proposal' => {
+    if (typeof window !== 'undefined' && window.location.hash.toLowerCase().includes('proposal')) {
+      return 'proposal';
     }
-    return 'proposal';
+    return 'overview';
   };
 
-  const [currentPage, setCurrentPage] = useState<'proposal' | 'analysis'>(getInitialPage);
+  const [currentPage, setCurrentPage] = useState<'overview' | 'proposal'>(getInitialPage);
 
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash.toLowerCase().includes('analysis')) {
-        setCurrentPage('analysis');
-      } else {
+      if (window.location.hash.toLowerCase().includes('proposal')) {
         setCurrentPage('proposal');
+      } else {
+        setCurrentPage('overview');
       }
     };
 
@@ -25,22 +25,22 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleOpenAnalysis = () => {
-    window.location.hash = '#analysis';
-    setCurrentPage('analysis');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBackToProposal = () => {
+  const handleOpenProposal = () => {
     window.location.hash = '#proposal';
     setCurrentPage('proposal');
   };
 
-  if (currentPage === 'analysis') {
-    return <BoothAnalysisPage onBackToProposal={handleBackToProposal} />;
+  const handleOpenOverview = () => {
+    window.location.hash = '#overview';
+    setCurrentPage('overview');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (currentPage === 'proposal') {
+    return <PresentationShell onOpenAnalysis={handleOpenOverview} />;
   }
 
-  return <PresentationShell onOpenAnalysis={handleOpenAnalysis} />;
+  return <ElectoralOverviewPage onBackToProposal={handleOpenProposal} />;
 };
 
 export default App;

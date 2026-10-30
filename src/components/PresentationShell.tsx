@@ -132,10 +132,10 @@ export const PresentationShell: React.FC<PresentationShellProps> = ({ onOpenAnal
                 type="button"
                 onClick={onOpenAnalysis}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#0066CC] hover:bg-[#0052A3] transition-all shadow-sm"
-                title="Open Polling Station Comparison & Strength Analysis Page"
+                title="Open Viralimalai 2026 Complete Electoral Overview Page"
               >
                 <BarChart3 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Booth Analysis</span>
+                <span className="hidden sm:inline">2026 Electoral Overview</span>
               </button>
             )}
 
